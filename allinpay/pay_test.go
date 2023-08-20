@@ -3,8 +3,8 @@ package allinpay
 import (
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/xlog"
 )
 
 func TestClient_ScanPay(t *testing.T) {

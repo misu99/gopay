@@ -5,31 +5,31 @@
 ### 微信、支付宝、QQ、通联支付、拉卡拉、PayPal 的 Golang 版本SDK
 
 [![Github](https://img.shields.io/github/followers/iGoogle-ink?label=Follow&style=social)](https://github.com/iGoogle-ink)
-[![Github](https://img.shields.io/github/forks/go-pay/gopay?label=Fork&style=social)](https://github.com/go-pay/gopay/fork)
+[![Github](https://img.shields.io/github/forks/go-pay/gopay?label=Fork&style=social)](https://github.com/misu99/gopay/fork)
 
 [![Golang](https://img.shields.io/badge/golang-1.18-brightgreen.svg)](https://golang.google.cn)
-[![GoDoc](https://img.shields.io/badge/doc-pkg.go.dev-informational.svg)](https://pkg.go.dev/github.com/go-pay/gopay)
-[![Go](https://github.com/go-pay/gopay/actions/workflows/go.yml/badge.svg)](https://github.com/go-pay/gopay/actions/workflows/go.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/go-pay/gopay)](https://github.com/go-pay/gopay/releases)
+[![GoDoc](https://img.shields.io/badge/doc-pkg.go.dev-informational.svg)](https://pkg.go.dev/github.com/misu99/gopay)
+[![Go](https://github.com/misu99/gopay/actions/workflows/go.yml/badge.svg)](https://github.com/misu99/gopay/actions/workflows/go.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/go-pay/gopay)](https://github.com/misu99/gopay/releases)
 [![License](https://img.shields.io/github/license/go-pay/gopay)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Go Report Card](https://goreportcard.com/badge/github.com/go-pay/gopay)](https://goreportcard.com/report/github.com/go-pay/gopay)
+[![Go Report Card](https://goreportcard.com/badge/github.com/misu99/gopay)](https://goreportcard.com/report/github.com/misu99/gopay)
 
 ---
 
 # 一、安装
 
 ```bash
-go get -u github.com/go-pay/gopay
+go get -u github.com/misu99/gopay
 ```
 
 #### 查看 GoPay 版本
 
-  [版本更新记录](https://github.com/go-pay/gopay/blob/main/release_note.txt)
+  [版本更新记录](https://github.com/misu99/gopay/blob/main/release_note.txt)
 
 ```go
 import (
-    "github.com/go-pay/gopay"
-    "github.com/go-pay/gopay/pkg/xlog"
+    "github.com/misu99/gopay"
+    "github.com/misu99/gopay/pkg/xlog"
 )
 
 func main() {
@@ -45,13 +45,13 @@ func main() {
 
 > ### 点击查看不同支付方式的使用文档。方便的话，请留下您认可的小星星，十分感谢！
 
-* #### [支付宝支付](https://github.com/go-pay/gopay/blob/main/doc/alipay.md)
-* #### [微信支付](https://github.com/go-pay/gopay/blob/main/doc/wechat_v3.md)
-* #### [QQ支付](https://github.com/go-pay/gopay/blob/main/doc/qq.md)
-* #### [通联支付](https://github.com/go-pay/gopay/blob/main/doc/allinpay.md)
-* #### [拉卡拉支付](https://github.com/go-pay/gopay/blob/main/doc/lakala.md)
-* #### [Paypal支付](https://github.com/go-pay/gopay/blob/main/doc/paypal.md)
-* #### [Apple支付校验](https://github.com/go-pay/gopay/blob/main/doc/apple.md)
+* #### [支付宝支付](https://github.com/misu99/gopay/blob/main/doc/alipay.md)
+* #### [微信支付](https://github.com/misu99/gopay/blob/main/doc/wechat_v3.md)
+* #### [QQ支付](https://github.com/misu99/gopay/blob/main/doc/qq.md)
+* #### [通联支付](https://github.com/misu99/gopay/blob/main/doc/allinpay.md)
+* #### [拉卡拉支付](https://github.com/misu99/gopay/blob/main/doc/lakala.md)
+* #### [Paypal支付](https://github.com/misu99/gopay/blob/main/doc/paypal.md)
+* #### [Apple支付校验](https://github.com/misu99/gopay/blob/main/doc/apple.md)
 
 ---
 
@@ -73,7 +73,7 @@ func main() {
     * `gopay/paypal/client_test.go`
     * `gopay/apple/verify_test.go`
     * 或 examples
-* 接入gopay示例项目(可参考接入使用方式)：[gopay-platform](https://github.com/go-pay/gopay-platform)
+* 接入gopay示例项目(可参考接入使用方式)：[gopay-platform](https://github.com/misu99/gopay-platform)
 * 有问题请加QQ群(加群验证答案：gopay) 或 加微信好友(备注：gopay开发)拉群。在此，非常感谢提出宝贵意见和反馈问题的同志们！
 * 开发过程中，请尽量使用正式环境，1分钱测试法！
 * 业余时间接各类业务外包项目开发(前端+后端，架构设计->系统开发->部署运营)，如需要加微信联系。

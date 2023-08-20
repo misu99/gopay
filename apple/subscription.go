@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
+	"github.com/misu99/gopay"
 )
 
 // GetAllSubscriptionStatuses Get All Subscription Statuses

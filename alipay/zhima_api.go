@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
 )
 
 // Deprecated

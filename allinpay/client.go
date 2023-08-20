@@ -11,11 +11,11 @@ import (
 	"fmt"
 	"hash"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xhttp"
-	"github.com/go-pay/gopay/pkg/xpem"
-	"github.com/go-pay/gopay/pkg/xrsa"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
+	"github.com/misu99/gopay/pkg/xhttp"
+	"github.com/misu99/gopay/pkg/xpem"
+	"github.com/misu99/gopay/pkg/xrsa"
 )
 
 type Client struct {

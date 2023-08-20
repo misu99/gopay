@@ -8,11 +8,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xhttp"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/pkg/xpem"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
+	"github.com/misu99/gopay/pkg/xhttp"
+	"github.com/misu99/gopay/pkg/xlog"
+	"github.com/misu99/gopay/pkg/xpem"
 )
 
 // ClientV3 微信支付 V3

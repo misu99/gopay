@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
 )
 
 // 创建代金券批次

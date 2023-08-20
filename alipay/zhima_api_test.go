@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
+	"github.com/misu99/gopay/pkg/xlog"
 )
 
 // 芝麻企业信用信用评估初始化测试

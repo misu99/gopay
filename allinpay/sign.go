@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/go-pay/gopay"
+	"github.com/misu99/gopay"
 )
 
 // verifySign 验证响应签名

@@ -4,9 +4,9 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/xlog"
-	"github.com/go-pay/gopay/pkg/xrsa"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/xlog"
+	"github.com/misu99/gopay/pkg/xrsa"
 )
 
 func TestSyncVerifySign(t *testing.T) {

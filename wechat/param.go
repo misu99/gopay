@@ -15,10 +15,10 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xhttp"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
+	"github.com/misu99/gopay/pkg/xhttp"
+	"github.com/misu99/gopay/pkg/xlog"
 	"golang.org/x/crypto/pkcs12"
 )
 

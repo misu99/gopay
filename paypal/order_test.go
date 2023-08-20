@@ -3,9 +3,9 @@ package paypal
 import (
 	"testing"
 
-	"github.com/go-pay/gopay"
-	"github.com/go-pay/gopay/pkg/util"
-	"github.com/go-pay/gopay/pkg/xlog"
+	"github.com/misu99/gopay"
+	"github.com/misu99/gopay/pkg/util"
+	"github.com/misu99/gopay/pkg/xlog"
 )
 
 func TestCreateOrder(t *testing.T) {

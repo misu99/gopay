@@ -10,7 +10,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/go-pay/gopay/pkg/jwt"
+	"github.com/misu99/gopay/pkg/jwt"
 )
 
 // ExtractClaims 解析jws格式数据

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/go-pay/gopay"
+	"github.com/misu99/gopay"
 )
 
 // 创建报关单（非拆单）
