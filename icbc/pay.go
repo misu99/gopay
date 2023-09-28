@@ -9,9 +9,9 @@ import (
 	"github.com/misu99/gopay/pkg/util"
 )
 
-// Pay 聚合支付接口
+// Pay 聚合支付接口（bm只需传入biz_content参数）
 func (c *Client) Pay(ctx context.Context, bm gopay.BodyMap) (rsp *PayRsp, err error) {
-	err = bm.CheckEmptyError("mer_id", "out_trade_no", "pay_mode", "access_type")
+	err = bm.CheckEmptyError("out_trade_no", "pay_mode", "access_type", "decive_info", "fee_type", "total_fee")
 	if err != nil {
 		return nil, err
 	}
@@ -23,12 +23,12 @@ func (c *Client) Pay(ctx context.Context, bm gopay.BodyMap) (rsp *PayRsp, err er
 
 	rspCommon := new(RspCommon)
 	if err = json.Unmarshal(bs, rspCommon); err != nil {
-		return nil, fmt.Errorf("[%w], bytes: %s", gopay.UnmarshalErr, string(bs))
+		return nil, fmt.Errorf("[%w], bytes: %s", err, string(bs))
 	}
 
 	rsp = new(PayRsp)
 	if err = json.Unmarshal(rspCommon.ResponseBizContent, rsp); err != nil {
-		return nil, fmt.Errorf("[%w], bytes: %s", gopay.UnmarshalErr, string(bs))
+		return nil, fmt.Errorf("[%w], bytes: %s", err, string(bs))
 	}
 
 	if err := bizErrCheck(rsp.RspBase); err != nil {
@@ -38,7 +38,38 @@ func (c *Client) Pay(ctx context.Context, bm gopay.BodyMap) (rsp *PayRsp, err er
 	return rsp, c.verifySign(rspCommon)
 }
 
-// Refund 统一退款接口
+// Query 聚合支付查询接口（bm只需传入biz_content参数）
+func (c *Client) Query(ctx context.Context, bm gopay.BodyMap) (rsp *PayQueryRsp, err error) {
+	err = bm.CheckEmptyError("out_trade_no")
+	if err != nil {
+		return nil, err
+	}
+
+	bm.Set("deal_flag", "0") // 操作标志，0-查询；1-关单 2-关单（不支持二次支付）
+
+	var bs []byte
+	if bs, err = c.doPost(ctx, payQueryPath, bm); err != nil {
+		return nil, err
+	}
+
+	rspCommon := new(RspCommon)
+	if err = json.Unmarshal(bs, rspCommon); err != nil {
+		return nil, fmt.Errorf("[%w], bytes: %s", err, string(bs))
+	}
+
+	rsp = new(PayQueryRsp)
+	if err = json.Unmarshal(rspCommon.ResponseBizContent, rsp); err != nil {
+		return nil, fmt.Errorf("[%w], bytes: %s", err, string(bs))
+	}
+
+	if err := bizErrCheck(rsp.RspBase); err != nil {
+		return nil, err
+	}
+
+	return rsp, c.verifySign(rspCommon)
+}
+
+// Refund 统一退款接口（bm只需传入biz_content参数）
 func (c *Client) Refund(ctx context.Context, bm gopay.BodyMap) (rsp *RefundRsp, err error) {
 	err = bm.CheckEmptyError("mer_id", "outtrx_serial_no", "ret_total_amt")
 	if err != nil {

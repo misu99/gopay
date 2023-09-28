@@ -8,7 +8,7 @@ import (
 	"github.com/misu99/gopay/pkg/util"
 )
 
-// AppId   string `json:"app_id"`   //支付宝分配给开发者的应用ID
+// appId   string `json:"app_id"`   //支付宝分配给开发者的应用ID
 // Method  string `json:"method"`   //接口名称
 // Format  string `json:"format"`   //仅支持 JSON
 // ReturnUrl  string `json:"return_url"`  //HTTP/HTTPS开头字符串

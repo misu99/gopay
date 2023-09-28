@@ -24,10 +24,12 @@ func (c *Client) verifySign(rsp *RspCommon) (err error) {
 	return nil
 }
 
-func (c *Client) VerifyNotifySign(bm gopay.BodyMap) (err error) {
+// 回调通知验证签名
+func (c *Client) VerifyNotifySign(path string, bm gopay.BodyMap) (err error) {
 	sign := bm.Get("sign")
 	bm.Remove("sign")
-	signData := bm.EncodeAliPaySignParams()
+	signData := path + "?" + bm.EncodeAliPaySignParams()
+
 	signBytes, _ := base64.StdEncoding.DecodeString(sign)
 	hashs := crypto.SHA1
 	h := hashs.New()

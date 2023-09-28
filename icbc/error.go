@@ -6,13 +6,13 @@ import (
 
 // BizErr 用于判断业务逻辑是否有错误
 type BizErr struct {
-	Code int    `json:"code"`
+	Code string `json:"code"`
 	Msg  string `json:"msg"`
 }
 
 // bizErrCheck 检查返回码是否为成功 否则返回一个BizErr
 func bizErrCheck(resp RspBase) error {
-	if resp.ReturnCode != 0 {
+	if resp.ReturnCode != "0" {
 		return &BizErr{
 			Code: resp.ReturnCode,
 			Msg:  resp.ReturnMsg,
@@ -22,5 +22,5 @@ func bizErrCheck(resp RspBase) error {
 }
 
 func (e *BizErr) Error() string {
-	return fmt.Sprintf(`{"code":"%d","msg":"%s"}`, e.Code, e.Msg)
+	return fmt.Sprintf(`{"code":"%s","msg":"%s"}`, e.Code, e.Msg)
 }

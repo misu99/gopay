@@ -149,7 +149,7 @@ func (c *ClientV3) WxPublicKey() (wxPublicKey *rsa.PublicKey) {
 }
 
 // 获取 微信平台证书 Map（readonly）
-// wxPublicKeyMap: key:SerialNo, value:WxPublicKey
+// wxPublicKeyMap: key:serialNo, value:WxPublicKey
 func (c *ClientV3) WxPublicKeyMap() (wxPublicKeyMap map[string]*rsa.PublicKey) {
 	wxPublicKeyMap = make(map[string]*rsa.PublicKey, len(c.SnCertMap))
 	for k, v := range c.SnCertMap {
