@@ -71,7 +71,7 @@ func (c *Client) Query(ctx context.Context, bm gopay.BodyMap) (rsp *PayQueryRsp,
 
 // Refund 统一退款接口（bm只需传入biz_content参数）
 func (c *Client) Refund(ctx context.Context, bm gopay.BodyMap) (rsp *RefundRsp, err error) {
-	err = bm.CheckEmptyError("mer_id", "outtrx_serial_no", "ret_total_amt")
+	err = bm.CheckEmptyError("outtrx_serial_no", "ret_total_amt")
 	if err != nil {
 		return nil, err
 	}

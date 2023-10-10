@@ -61,7 +61,7 @@ func NewClient(merId, appId, serialNo, clearingAccount, privateKey, publicKey st
 	}, nil
 }
 
-// getRsaSign 获取签名字符串
+// getRsaSign 获取签名字符串(&拼接参数)
 func (c *Client) getRsaSign(path string, bm gopay.BodyMap, signType string, privateKey *rsa.PrivateKey) (sign string, err error) {
 	var (
 		h              hash.Hash
@@ -84,6 +84,38 @@ func (c *Client) getRsaSign(path string, bm gopay.BodyMap, signType string, priv
 	signParams := bm.EncodeAliPaySignParams()
 	if path != "" {
 		signParams = path + "?" + signParams
+	}
+
+	if _, err = h.Write([]byte(signParams)); err != nil {
+		return
+	}
+
+	if encryptedBytes, err = rsa.SignPKCS1v15(rand.Reader, privateKey, hashs, h.Sum(nil)); err != nil {
+		return util.NULL, fmt.Errorf("[%w]: %+v", gopay.SignatureErr, err)
+	}
+
+	sign = base64.StdEncoding.EncodeToString(encryptedBytes)
+	return
+}
+
+// getRsaSign 获取签名字符串(json拼接参数)
+func (c *Client) getRsaSign2(signParams, signType string, privateKey *rsa.PrivateKey) (sign string, err error) {
+	var (
+		h              hash.Hash
+		hashs          crypto.Hash
+		encryptedBytes []byte
+	)
+
+	switch signType {
+	case RSA:
+		h = sha1.New()
+		hashs = crypto.SHA1
+	case RSA2:
+		h = sha256.New()
+		hashs = crypto.SHA256
+	default:
+		h = sha1.New()
+		hashs = crypto.SHA1
 	}
 
 	if _, err = h.Write([]byte(signParams)); err != nil {

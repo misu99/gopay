@@ -3,9 +3,6 @@ package icbc
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/misu99/gopay"
-	"strconv"
-	"time"
 )
 
 // 异步回调通知响应体参数
@@ -49,29 +46,18 @@ type NotifyRsp struct {
 }
 
 // 获取回调通知返回
-func (c *Client) GetNotifyRsp(code int, msg string) (rsp NotifyRspCommon, err error) {
-	msgID := strconv.FormatInt(time.Now().UnixNano(), 10)
-
-	// 业务响应参数
-	bm := make(gopay.BodyMap)
-	bm.Set("return_code", code)
-	bm.Set("return_msg", msg)
-	bm.Set("msg_id", msgID)
-	bizContent, err := json.Marshal(bm)
-	if err != nil {
-		return
-	}
-
-	// 通用响应参数
-	params := make(gopay.BodyMap)
-	params.Set("response_biz_content", string(bizContent)).
-		Set("sign_type", RSA2)
+func (c *Client) GetNotifyRsp(code int, msg, srcMsgId string) (rsp string, err error) {
+	signParam := fmt.Sprintf("\"response_biz_content\":{\"return_code\":%d,\"return_msg\":\"%s\",\"msg_id\":\"%s\"},\"sign_type\":\"RSA2\"",
+		code, msg, srcMsgId)
 
 	// 计算参数签名
-	sign, err := c.getRsaSign("", params, params.GetString("sign_type"), c.privateKey)
+	sign, err := c.getRsaSign2(signParam, RSA2, c.privateKey)
 	if err != nil {
 		return rsp, fmt.Errorf("GetRsaSign Error: %w", err)
 	}
 
-	return NotifyRspCommon{ResponseBizContent: bizContent, SignType: RSA2, Sign: sign}, nil
+	rsp = fmt.Sprintf("{\"response_biz_content\":{\"return_code\":%d,\"return_msg\":\"%s\",\"msg_id\":\"%s\"},\"sign_type\":\"RSA2\",\"sign\":\"%s\"}",
+		code, msg, srcMsgId, sign)
+
+	return
 }
