@@ -41,20 +41,18 @@ type PayRsp struct {
 	RspBase
 	ConnectSys     string `json:"connectSys"`
 	DelegatedFlag  string `json:"delegatedFlag"`
-	MerName        string `json:"merName"`    // 商户名称
-	MerOrderId     string `json:"merOrderId"` // 商户订单号
-	Mid            string `json:"mid"`        // 商户号
-	MsgId          string `json:"msgId"`
-	SettleRefId    string `json:"settleRefId"` // 清分ID 如果来源方传了bankRefId就等于bankRefId，否则等于seqId
-	Tid            string `json:"tid"`         // 终端号
+	MerName        string `json:"merName"`
+	Mid            string `json:"mid"`
+	SettleRefId    string `json:"settleRefId"`
+	Tid            string `json:"tid"`
 	TotalAmount    int    `json:"totalAmount"`
-	TargetMid      string `json:"targetMid"`      // 支付渠道商户号 各渠道情况不同，酌情转换
-	TargetStatus   string `json:"targetStatus"`   // 目标平台的状态
-	SeqId          string `json:"seqId"`          // 平台流水号
-	Status         string `json:"status"`         // 交易状态
-	TargetSys      string `json:"targetSys"`      // 目标平台代码
-	TargetOrderId  string `json:"targetOrderId"`  // 第三方订单号
-	MiniPayRequest string `json:"miniPayRequest"` // 小程序支付用的请求报文，带有签名信息
+	TargetMid      string `json:"targetMid"`
+	MiniPayRequest any    `json:"miniPayRequest"`
+	TargetStatus   string `json:"targetStatus"`
+	SeqId          string `json:"seqId"`
+	MerOrderId     string `json:"merOrderId"`
+	Status         string `json:"status"`
+	TargetSys      string `json:"targetSys"`
 }
 
 // RefundRsp 退款响应

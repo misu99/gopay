@@ -1,10 +1,11 @@
 package unionpay
 
 import (
-	"crypto/md5"
+	"crypto/sha256"
 	"encoding/hex"
 	"errors"
 	"github.com/misu99/gopay"
+	"strings"
 )
 
 func (c *Client) VerifyNotifySign(bm gopay.BodyMap) (err error) {
@@ -16,9 +17,9 @@ func (c *Client) VerifyNotifySign(bm gopay.BodyMap) (err error) {
 	signData += c.secretKey
 
 	// 计算签名
-	h := md5.New()
+	h := sha256.New()
 	h.Write([]byte(signData))
-	sign := hex.EncodeToString(h.Sum(nil))
+	sign := strings.ToUpper(hex.EncodeToString(h.Sum(nil)))
 
 	if srcSign != sign {
 		return errors.New("sign not match")

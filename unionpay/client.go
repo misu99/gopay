@@ -76,6 +76,7 @@ func (c *Client) getSignBodySig(appid, appKey, timestamp, nonce string, body []b
 // OPEN-FORM-PARAM签名串
 func (c *Client) getSignFormSig(appid, appKey, timestamp, nonce string, body []byte) string {
 	sign := c.getSign(appid, appKey, timestamp, nonce, body)
+	authorization := "OPEN-FORM-PARAM"
 
 	//params := make(gopay.BodyMap)
 	//params.
@@ -86,7 +87,7 @@ func (c *Client) getSignFormSig(appid, appKey, timestamp, nonce string, body []b
 	//	Set("content", string(body)).
 	//	Set("signature", sign)
 
-	param := "?" + "authorization=" + sign + "&appId=" + appid + "&timestamp=" + "20190812160100" + "&nonce=" + "nonce" + "&content=" + url.QueryEscape(string(body)) + "&signature=" + url.QueryEscape(sign)
+	param := "authorization=" + authorization + "&appId=" + appid + "&timestamp=" + timestamp + "&nonce=" + nonce + "&content=" + url.QueryEscape(string(body)) + "&signature=" + url.QueryEscape(sign)
 
 	return param
 }
@@ -168,4 +169,25 @@ func (c *Client) doGet(ctx context.Context, path string, bm gopay.BodyMap) (bs [
 		return nil, fmt.Errorf("HTTPCode=%d Content=%s", res.StatusCode, string(bs))
 	}
 	return bs, nil
+}
+
+// doUrl 组装请求url
+func (c *Client) doUrl(path string, bm gopay.BodyMap) (res string, err error) {
+	param, err := c.pubParamsHandle(bm)
+	if err != nil {
+		return res, err
+	}
+
+	// 计算参数签名
+	timestamp := time.Now().Format("20060102150405")
+	nonce := strconv.FormatInt(time.Now().UnixNano(), 10)
+	queryParam := c.getSignFormSig(c.appid, c.appKey, timestamp, nonce, param)
+
+	urlBase := baseUrl
+	if !c.isProd {
+		urlBase = sandboxBaseUrl
+	}
+	urlBase += path + "?" + queryParam
+
+	return urlBase, nil
 }

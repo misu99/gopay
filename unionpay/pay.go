@@ -6,7 +6,6 @@ import (
 	"fmt"
 
 	"github.com/misu99/gopay"
-	"github.com/misu99/gopay/pkg/util"
 )
 
 // 微信小程序支付下单
@@ -36,6 +35,24 @@ func (c *Client) MiniWechatPay(ctx context.Context, bm gopay.BodyMap) (rsp *PayR
 	}
 
 	return rsp, nil
+}
+
+// 公众号支付下单
+func (c *Client) Webpay(ctx context.Context, bm gopay.BodyMap) (res string, err error) {
+	err = bm.CheckEmptyError("merOrderId", "totalAmount", "notifyUrl")
+	if err != nil {
+		return res, err
+	}
+
+	// 补充必填业务参数
+	bm.
+		Set("instMid", "YUEDANDEFAULT") // 业务类型
+
+	if res, err = c.doUrl(WebPayOrderPath, bm); err != nil {
+		return res, err
+	}
+
+	return res, nil
 }
 
 // h5微信支付下单
@@ -99,10 +116,6 @@ func (c *Client) Refund(ctx context.Context, bm gopay.BodyMap) (rsp *RefundRsp, 
 	err = bm.CheckEmptyError("merOrderId", "refundAmount", "refundOrderId")
 	if err != nil {
 		return nil, err
-	}
-
-	if bm.GetString("merOrderId") == util.NULL && bm.GetString("targetOrderId") == util.NULL {
-		return nil, fmt.Errorf("[%w], %v", gopay.MissParamErr, "merOrderId和targetOrderId必填其一")
 	}
 
 	var bs []byte

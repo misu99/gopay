@@ -12,7 +12,7 @@ type BizErr struct {
 
 // bizErrCheck 检查返回码是否为成功 否则返回一个BizErr
 func bizErrCheck(resp RspBase) error {
-	if resp.ErrCode != "0000" {
+	if resp.ErrCode != "0000" && resp.ErrCode != "SUCCESS" {
 		return &BizErr{
 			Code: resp.ErrCode,
 			Msg:  resp.ErrMsg,
