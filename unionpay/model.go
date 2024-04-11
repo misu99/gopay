@@ -1,4 +1,4 @@
-package icbc
+package unionpay
 
 import (
 	"encoding/json"
@@ -39,20 +39,22 @@ type RspBase struct {
 // 小程序支付下单响应
 type PayRsp struct {
 	RspBase
-	MerName        string `json:"merName"`        // 商户名称
-	MerOrderId     string `json:"merOrderId"`     // 商户订单号
-	Mid            string `json:"mid"`            // 商户号
-	Tid            string `json:"tid"`            // 终端号
-	SeqId          string `json:"seqId"`          // 平台流水号
-	SettleRefId    string `json:"settleRefId"`    // 清分ID 如果来源方传了bankRefId就等于bankRefId，否则等于seqId
-	Status         string `json:"status"`         // 交易状态
-	TotalAmount    string `json:"totalAmount"`    // 支付总金额
-	TargetOrderId  string `json:"targetOrderId"`  // 第三方订单号
-	TargetSys      string `json:"targetSys"`      // 目标平台代码 取值说明
-	TargetStatus   string `json:"targetStatus"`   // 目标平台的状态
-	MiniPayRequest any    `json:"miniPayRequest"` // 小程序支付用的请求报文，带有签名信息
+	ConnectSys     string `json:"connectSys"`
+	DelegatedFlag  string `json:"delegatedFlag"`
+	MerName        string `json:"merName"`    // 商户名称
+	MerOrderId     string `json:"merOrderId"` // 商户订单号
+	Mid            string `json:"mid"`        // 商户号
+	MsgId          string `json:"msgId"`
+	SettleRefId    string `json:"settleRefId"` // 清分ID 如果来源方传了bankRefId就等于bankRefId，否则等于seqId
+	Tid            string `json:"tid"`         // 终端号
+	TotalAmount    int    `json:"totalAmount"`
 	TargetMid      string `json:"targetMid"`      // 支付渠道商户号 各渠道情况不同，酌情转换
-	YxlmAmount     string `json:"yxlmAmount"`     // 营销联盟优惠金额 仅享受联盟优惠的订单，查询返回
+	TargetStatus   string `json:"targetStatus"`   // 目标平台的状态
+	SeqId          string `json:"seqId"`          // 平台流水号
+	Status         string `json:"status"`         // 交易状态
+	TargetSys      string `json:"targetSys"`      // 目标平台代码
+	TargetOrderId  string `json:"targetOrderId"`  // 第三方订单号
+	MiniPayRequest string `json:"miniPayRequest"` // 小程序支付用的请求报文，带有签名信息
 }
 
 // RefundRsp 退款响应

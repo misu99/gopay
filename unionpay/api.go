@@ -1,4 +1,4 @@
-package icbc
+package unionpay
 
 const (
 	// 微信小程序支付下单
