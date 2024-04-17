@@ -55,28 +55,32 @@ type PayRsp struct {
 	TargetSys      string `json:"targetSys"`
 }
 
-// RefundRsp 退款响应
+// 退款响应
 type RefundRsp struct {
 	RspBase
-	Mid                      string `json:"mid"`                      // 商户号，原样返回
-	Tid                      string `json:"tid"`                      // 终端号，原样返回
-	MerOrderId               string `json:"merOrderId"`               // 商户订单号
-	MerName                  string `json:"merName"`                  // 商户名称
-	SeqId                    string `json:"seqId"`                    // 平台流水号
-	Status                   string `json:"status"`                   // 交易状态
-	TargetMid                string `json:"targetMid"`                // 支付渠道商户号
-	TargetOrderId            string `json:"targetOrderId"`            // 目标平台单号 退货交易时不返回
-	TargetStatus             string `json:"targetStatus"`             // 目标平台状态
-	TargetSys                string `json:"targetSys"`                // 目标平台代码
-	TotalAmount              string `json:"totalAmount"`              // 支付总金额
-	RefundAmount             string `json:"refundAmount"`             // 总退款金额
-	RefundFunds              string `json:"refundFunds"`              // 退款渠道列表
-	RefundFundsDesc          string `json:"refundFundsDesc"`          // 退款渠道描述
-	RefundInvoiceAmount      string `json:"refundInvoiceAmount"`      // 实付部分退款金额
-	RefundOrderId            string `json:"refundOrderId"`            // 退货订单号
-	RefundTargetOrderId      string `json:"refundTargetOrderId"`      // 目标系统退货订单号
-	YxlmAmount               string `json:"yxlmAmount"`               // 营销联盟优惠金额 仅享受联盟优惠的订单，查询返回
-	RefundStatus             string `json:"refundStatus"`             // 退款状态详见取值说明
-	RefundMerchantContribute string `json:"refundMerchantContribute"` // 商户出资优惠金额 目前支持微信返回，其他渠道产品规划中
-	RefundOtherContribute    string `json:"refundOtherContribute"`    // 其他出资优惠金额,目前支持微信返回
+	PayTime             string `json:"payTime"`
+	ConnectSys          string `json:"connectSys"`
+	MerName             string `json:"merName"`      // 商户名称
+	Mid                 string `json:"mid"`          // 商户号，原样返回
+	RefundStatus        string `json:"refundStatus"` // 退款状态详见取值说明
+	SettleDate          string `json:"settleDate"`
+	SendBackAmount      int    `json:"sendBackAmount"`
+	Tid                 string `json:"tid"`                 // 终端号，原样返回
+	RefundTargetOrderId string `json:"refundTargetOrderId"` // 目标系统退货订单号
+	RefundFundsDesc     string `json:"refundFundsDesc"`     // 退款渠道描述
+	RefundFunds         string `json:"refundFunds"`         // 退款渠道列表
+	TargetMid           string `json:"targetMid"`           // 支付渠道商户号
+	CardAttr            string `json:"cardAttr"`
+	TargetStatus        string `json:"targetStatus"` // 目标平台状态
+	SeqId               string `json:"seqId"`        // 平台流水号
+	MerOrderId          string `json:"merOrderId"`   // 商户订单号
+	TargetSys           string `json:"targetSys"`    // 目标平台代码
+	BankInfo            string `json:"bankInfo"`
+	DelegatedFlag       string `json:"delegatedFlag"`
+	SettleRefId         string `json:"settleRefId"`
+	RefundOrderId       string `json:"refundOrderId"`       // 退货订单号
+	TotalAmount         int    `json:"totalAmount"`         // 支付总金额
+	RefundInvoiceAmount int    `json:"refundInvoiceAmount"` // 实付部分退款金额
+	ChnlCost            string `json:"chnlCost"`
+	Status              string `json:"status"` // 交易状态
 }
